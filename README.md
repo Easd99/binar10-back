@@ -263,7 +263,21 @@ Esto levantará:
 
 La API estará disponible en: [http://localhost:5000/graphql](http://localhost:5000/graphql)
 
+
 ---
+
+## 🌐 Despliegue en producción
+
+El proyecto también está desplegado en producción en:
+
+```
+https://binar10-back-production.up.railway.app/graphql
+```
+
+Puedes usar este endpoint para realizar consultas y mutations en el entorno de producción.
+
+---
+
 
 ## 🧪 Scripts útiles
 
