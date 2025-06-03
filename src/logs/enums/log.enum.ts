@@ -1,0 +1,19 @@
+import { registerEnumType } from '@nestjs/graphql';
+
+export enum LogAction {
+  REGISTER_PURCHASE = 'REGISTER_PURCHASE',
+  UPDATE_PURCHASE = 'UPDATE_PURCHASE',
+  DELETE_PURCHASE = 'DELETE_PURCHASE',
+  REDEEM_POINTS = 'REDEEM_POINTS',
+  CREATE_USER = 'CREATE_USER',
+  UPDATE_USER = 'UPDATE_USER',
+  DELETE_USER = 'DELETE_USER',
+  POINTS = 'POINTS',
+  CREATE_REWARD = 'CREATE_REWARD',
+  UPDATE_REWARD = 'UPDATE_REWARD',
+  DELETE_REWARD = 'DELETE_REWARD',
+}
+
+registerEnumType(LogAction, {
+  name: 'LogAction',
+});
