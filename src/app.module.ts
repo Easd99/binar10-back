@@ -25,6 +25,7 @@ import { LogsModule } from './logs/logs.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: true,
       csrfPrevention: false,
+      path: '/graphql',
     }),
     ConfigModule.forRoot({
       load: [typeorm],
