@@ -258,7 +258,7 @@ docker-compose up --build
 Esto levantará:
 
 - `binar10_back` en el puerto `5000`
-- `PostgreSQL` en el puerto `4561`
+- `PostgreSQL` en el puerto `5432`
 - `MongoDB` en el puerto `27017`
 
 La API estará disponible en: [http://localhost:5000/graphql](http://localhost:5000/graphql)
