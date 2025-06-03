@@ -54,3 +54,8 @@ SELECT 'Discount Coupon', 300
 INSERT INTO rewards (name, points_cost)
 SELECT 'Free Shipping', 200
     WHERE NOT EXISTS (SELECT 1 FROM rewards WHERE name = 'Free Shipping');
+
+-- ========== INSERT TEST USER ==========
+INSERT INTO users (name)
+SELECT 'Usuario de prueba'
+    WHERE NOT EXISTS (SELECT 1 FROM users WHERE name = 'Usuario de prueba');
