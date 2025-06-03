@@ -16,15 +16,15 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { PurchasesModule } from './purchases/purchases.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { mongooseConfig } from './config/mongoose.config';
-import { LogsService } from './logs/logs.service';
 import { LogsModule } from './logs/logs.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // Auto-generar el schema
-      playground: true, // Habilita GraphQL Playground
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      playground: true,
+      csrfPrevention: false,
     }),
     ConfigModule.forRoot({
       load: [typeorm],
