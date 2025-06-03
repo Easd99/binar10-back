@@ -3,6 +3,8 @@
 /node_modules
 /build
 
+/cloud-functions/register-purchase/node_modules
+
 # Logs
 src/logs
 *.log

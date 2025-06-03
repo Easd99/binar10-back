@@ -6,12 +6,14 @@ import { PurchaseResolver } from './purchase.resolver';
 import { User } from '../users/entities/user.entity';
 import { TransactionsModule } from '../transactions/transactions.module';
 import { LogsModule } from '../logs/logs.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Purchase, User]),
     TransactionsModule,
     LogsModule,
+    HttpModule,
   ],
   providers: [PurchaseService, PurchaseResolver],
   exports: [PurchaseService],

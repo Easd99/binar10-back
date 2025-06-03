@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Purchase } from './entities/purchase.entity';
@@ -13,6 +9,8 @@ import { Transactional } from 'typeorm-transactional';
 import { TransactionsService } from '../transactions/transactions.service';
 import { LogsService } from '../logs/logs.service';
 import { LogAction } from '../logs/enums/log.enum';
+import { HttpService } from '@nestjs/axios';
+import * as process from 'node:process';
 
 @Injectable()
 export class PurchaseService {
@@ -23,6 +21,7 @@ export class PurchaseService {
     private userRepository: Repository<User>,
     private readonly transactionsService: TransactionsService,
     private readonly logsService: LogsService,
+    private readonly httpService: HttpService,
   ) {}
 
   @Transactional()
@@ -52,6 +51,18 @@ export class PurchaseService {
         action: LogAction.REGISTER_PURCHASE,
         detail: `Purchase of ${input.amount} registered, earning ${points} points.`,
       });
+
+      if (process.env.GCP_URI) {
+        try {
+          const userId = input.userId;
+          await this.httpService.axiosRef.post(process.env.GCP_URI, {
+            userId,
+            points,
+          });
+        } catch (e) {
+          console.log('Error sending points to GCP URI:', e.message);
+        }
+      }
 
       return await this.purchaseRepository.save(purchase);
     } catch (e: any) {

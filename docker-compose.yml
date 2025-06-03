@@ -29,4 +29,4 @@ services:
       - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: "root"
-      MONGO_INITDB_ROOT_PASSWORD: "Bv{-jqW{&L23d$JF)"
+      MONGO_INITDB_ROOT_PASSWORD: "12345"

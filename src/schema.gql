@@ -8,6 +8,9 @@ type Transaction {
   points: Int!
   date: DateTime!
   user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
 }
 
 """
@@ -73,7 +76,7 @@ type Query {
   getUserHistory(userId: Int): [Transaction!]!
   getLogs: [Log!]!
   getLog(id: String!): Log!
-  getAvailableRewards: [Reward!]!
+  getRewards: [Reward!]!
   getReward(id: Int!): Reward!
   getPurchases: [Purchase!]!
   getPurchase(id: Int!): Purchase!
