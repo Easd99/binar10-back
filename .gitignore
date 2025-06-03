@@ -6,7 +6,6 @@
 /cloud-functions/register-purchase/node_modules
 
 # Logs
-src/logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
