@@ -1,0 +1,125 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Transaction {
+  id: ID!
+  type: String!
+  points: Int!
+  date: DateTime!
+  user: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Purchase {
+  id: ID!
+  user: User!
+  amount: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  date: DateTime!
+}
+
+type User {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type Reward {
+  id: ID!
+  name: String!
+  pointsCost: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type Log {
+  _id: ID!
+  action: LogAction!
+  detail: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum LogAction {
+  REGISTER_PURCHASE
+  UPDATE_PURCHASE
+  DELETE_PURCHASE
+  REDEEM_POINTS
+  CREATE_USER
+  UPDATE_USER
+  DELETE_USER
+  POINTS
+  CREATE_REWARD
+  UPDATE_REWARD
+  DELETE_REWARD
+}
+
+type Query {
+  hello: String!
+  users: [User!]!
+  user(id: Int!): User!
+  getUserPoints(id: Int!): Int!
+  transactions: [Transaction!]!
+  getUserHistory(userId: Int): [Transaction!]!
+  getLogs: [Log!]!
+  getLog(id: String!): Log!
+  getAvailableRewards: [Reward!]!
+  getReward(id: Int!): Reward!
+  getPurchases: [Purchase!]!
+  getPurchase(id: Int!): Purchase!
+}
+
+type Mutation {
+  createUser(createUserInput: UserCreateDto!): User!
+  updateUser(updateUserInput: UserUpdateDto!): User!
+  removeUser(id: Int!): Boolean!
+  redeemPoints(userId: Int!, rewardId: Int!): Transaction!
+  createReward(createRewardInput: CreateRewardInput!): Reward!
+  updateReward(updateRewardInput: UpdateRewardInput!): Reward!
+  removeReward(id: Int!): Boolean!
+  registerPurchase(createPurchaseInput: PurchaseCreateDto!): Purchase!
+  updatePurchase(updatePurchaseInput: UpdatePurchaseInput!): Purchase!
+  removePurchase(id: Int!): Boolean!
+}
+
+input UserCreateDto {
+  name: String!
+}
+
+input UserUpdateDto {
+  id: Int!
+  name: String!
+}
+
+input CreateRewardInput {
+  name: String!
+  pointsCost: Int!
+}
+
+input UpdateRewardInput {
+  id: Int!
+  name: String!
+  pointsCost: Int!
+}
+
+input PurchaseCreateDto {
+  userId: Int!
+  amount: Float!
+}
+
+input UpdatePurchaseInput {
+  id: Int!
+  userId: Int!
+  amount: Float!
+  date: DateTime!
+}
