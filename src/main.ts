@@ -7,6 +7,12 @@ async function bootstrap() {
   initializeTransactionalContext();
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: '*',
+    methods: ['POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
+
   app.setGlobalPrefix('api/v1');
 
   await app.listen(process.env.PORT || 5000);
